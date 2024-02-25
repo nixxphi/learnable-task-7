@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+   <link rel="stylesheet" href="to.do.css">
+</head>
+<body>
+  <div class="container">
+<!-- I cannot waste time explaining markup language,the js part of this is troublesome enough -->
+    <div class="decorative-border">
+        <span class="decorative-icon">&#9733;</span>
+        <span class="decorative-text">Learnable Task 7</span>
+        <span class="decorative-icon">&#9733;</span>
+      </div>
+    <div class="screen">
+      <div class="content" id="todo-list">
+        <h2>To-Do List</h2>
+        <div>
+          <input type="text" id="new-task" placeholder="Add a new task lazy ass...">
+          <input type="time" id="new-alarm">
+          <button onclick="addTask()">+</button>
+          <audio id="alarmSound" src="https://github.com/nixxphi/to-do/blob/49400523c7f94fc1825c8811fdbacd415f123106/alarmAudio.mp3" preload="auto"></audio>
+          <video id="slideUpVideo" autoplay loop muted class="dismissed">
+            <source src="alarmVid.mp4" type="video/mp4">
+                        <!--Testing alarm media, audio vs video-->
+          </video>
+        </div>
+        <p id="message"></p>
+        <div class="list">
+          <h3>Task List</h3>
+          <ul id="task-list"></ul>
+        </div>
+        <div id="clock" class="digital"></div>
+          <div class="clock">
+          </div>
+      </div>
+    </div>
+  </div>
+  <script src="to.do.js">
+  </script>
+</body>
+</html>
