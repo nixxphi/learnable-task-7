@@ -80,6 +80,21 @@
     box-sizing: border-box;
   }
 
+  #slideUpVideo.dismissed {
+    bottom: -300px;
+  }
+  
+  #slideUpVideo.show {
+    bottom: 0;
+  }
+  .due-box {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    margin-left: 8px;
+    border-radius: 4px;
+  }
   .list {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -134,21 +149,6 @@
     z-index: 9999;
   }
   
-  #slideUpVideo.dismissed {
-    bottom: -300px;
-  }
-  
-  #slideUpVideo.show {
-    bottom: 0;
-  }
-  .due-box {
-    display: inline-block;
-    background-color: red;
-    color: white;
-    padding: 4px 8px;
-    margin-left: 8px;
-    border-radius: 4px;
-  }
   #message {
     font-weight: bold;
     font-style: italic;

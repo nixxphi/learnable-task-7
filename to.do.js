@@ -37,89 +37,84 @@ document.getElementById('new-task').addEventListener('keyup', function(event) {
     }
   });
 
-function checkAlarms() {
-  const now = new Date();
-  tasks.forEach(task => {
-    if (task.alarm && task.alarm <= now) {
-      const audioElement = document.getElementById('alarmSound');
-      if (audioElement && audioElement.paused) {
-        audioElement.play();
+  function activateAlarm(task) {
+    if (task && task.alarm) {
+      const alarmTime = new Date(task.alarm);
+      const now = new Date();
+      const timeUntilAlarm = alarmTime - now;
+  
+      if (timeUntilAlarm > 0) {
+        setTimeout(() => {
+          const taskElement = document.getElementById(`task-${id}`);
+          if (taskElement) {
+            taskElement.style.color = 'red';
+          }
+        }, timeUntilAlarm);
+      } else {
+        console.log('Alarm time is in the past.');
+      }
+    } else {
+      console.log('You have done nothing exceptionally.');
+    }
+  }
+  
+  
+// This puts my list of tasks on screen and uses innerHtml for adding buttons to the page.
+  function renderTask(task) {
+    const taskElement = document.createElement('div');
+    taskElement.className = 'task';
+    taskElement.id = `task-${task.id}`;
+    let alarmString = '';
+    if (task.alarm instanceof Date) {
+      alarmString = task.alarm.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+    } else if (task.alarm) {
+      alarmString = task.alarm; // Display the alarm string as it is
+    }
+    taskElement.innerHTML = `
+      <label for="chk-${task.id}">${task.name} | ${alarmString}</label>
+      <div class="floating-menu">
+        <button onclick="editTask(${task.id})">Edit</button>
+        <button onclick="deleteTask(${task.id})">x</button>
+        <button onclick="completedTask(${task.id})">&#x2713;</button>
+        <button onclick="undoCompletedTask(${task.id})" style="display: none;">Undo</button>
+      </div>
+    `;
+  
+    tasksContainer.appendChild(taskElement);
+  }
+  
+  function completedTask(id) {
+    const taskElement = document.getElementById(`task-${id}`);
+    if (taskElement) {
+      const label = taskElement.querySelector('label');
+      label.style.color = 'green';
+      label.style.textDecoration = 'line-through';
+  
+      // this shows the undo button only after a task is completed.
+      const floatingMenu = taskElement.querySelector('.floating-menu');
+      const undoButton = floatingMenu.querySelector('button:last-child');
+      if (undoButton) {
+        undoButton.style.display = 'inline-block';
       }
     }
-  });
-}
-
-function activateAlarm(task) {
-  if (task && task.alarm) {
-    const alarmTime = new Date(task.alarm);
-    const now = new Date();
-    const timeUntilAlarm = alarmTime - now;
-
-    if (timeUntilAlarm > 0) {
-      setTimeout(() => {
-        executeAlarm(task);
-
-        const taskElement = document.getElementById(`task-${task.id}`);
-        if (taskElement) {
-          taskElement.style.color = 'red';
-        }
-      }, timeUntilAlarm);
-    } else {
-      console.log('Alarm time is in the past.');
+  }
+  
+  function undoCompletedTask(id) {
+    const taskElement = document.getElementById(`task-${id}`);
+    if (taskElement) {
+      const label = taskElement.querySelector('label');
+      label.style.color = '';
+      label.style.textDecoration = '';
+  
+      // This hides the undo button afterwards. It was a b*tch getting this to work right
+      const floatingMenu = taskElement.querySelector('.floating-menu');
+      const undoButton = floatingMenu.querySelector('button:last-child');
+      if (undoButton) {
+        undoButton.style.display = 'none';
+      }
     }
-  } else {
-    console.log('No task or alarm set.');
   }
-}
-
-function executeAlarm(task) {
-  const alarmSound = document.getElementById('alarmSound');
-  if (alarmSound && alarmSound.paused) {
-    alarmSound.play();
-  }
-}
-
-function renderTask(task) {
-  const taskElement = document.createElement('div');
-  taskElement.className = 'task';
-  taskElement.id = `task-${task.id}`;
-  let alarmString = '';
-  if (task.alarm instanceof Date) {
-    alarmString = task.alarm.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-  } else if (task.alarm) {
-    alarmString = task.alarm; // Display the alarm string as it is
-  }
-  taskElement.innerHTML = `
-    <label for="chk-${task.id}">${task.name} | ${alarmString}</label>
-    <div class="floating-menu">
-      <button onclick="editTask(${task.id})">Edit</button>
-      <button onclick="deleteTask(${task.id})">x</button>
-      <button onclick="completedTask(${task.id})">&#x2713;</button>
-      <button onclick="undoCompletedTask(${task.id})">Undo</button>
-    </div>
-  `;
-
-  tasksContainer.appendChild(taskElement);
-}
-
-function completedTask(id) {
-  const taskElement = document.getElementById(`task-${id}`);
-  if (taskElement) {
-    const label = taskElement.querySelector('label');
-    label.style.color = 'green';
-    label.style.textDecoration = 'line-through';
-  }
-}
-
-function undoCompletedTask(id) {
-  const taskElement = document.getElementById(`task-${id}`);
-  if (taskElement) {
-    const label = taskElement.querySelector('label');
-    label.style.color = '';
-    label.style.textDecoration = '';
-  }
-}
-
+  
 function editTask(id) {
   const task = tasks.find(task => task.id === id);
   if (task) {
@@ -173,7 +168,8 @@ function updateMessage() {
     "The secret of getting ahead is getting started. – Mark Twain",
     "Don't watch the clock; do what it does. Keep going. – Sam Levenson",
     "We're alcohol's problem. – Somtuzy",
-    "Learnable is Fun... but the shege is real. – Nixx"
+    "Learnable is Fun... but the shege is real. – Nixx",
+    "Bring more jobs! Nah the money wey we dey find – Canice"
   ];
 
   const randomIndex = Math.floor(Math.random() * quotes.length);
@@ -181,3 +177,6 @@ function updateMessage() {
 }
 
 updateMessage();
+setInterval(updateMessage, 5000);
+
+// Do pardon the mess in the css. I'm not very good at it 
