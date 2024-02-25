@@ -161,22 +161,36 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-function updateMessage() {
-  const quotes = [
-    "The only way to do great work is to love what you do. – Steve Jobs",
-    "With the new day comes new strength and new thoughts. – Eleanor Roosevelt",
-    "The secret of getting ahead is getting started. – Mark Twain",
-    "Don't watch the clock; do what it does. Keep going. – Sam Levenson",
-    "We're alcohol's problem. – Somtuzy",
-    "Learnable is Fun... but the shege is real. – Nixx",
-    "Bring more jobs! Nah the money wey we dey find – Canice"
-  ];
-
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  message.innerText = quotes[randomIndex];
+  function updateMessage() {
+    const quotes = [
+      "The only way to do great work is to love what you do. – Steve Jobs",
+      "With the new day comes new strength and new thoughts. – Eleanor Roosevelt",
+      "The secret of getting ahead is getting started. – Mark Twain",
+      "Don't watch the clock; do what it does. Keep going. – Sam Levenson",
+      "We're alcohol's problem. – Somtuzy",
+      "Learnable is Fun... but the shege is real. – Nixx",
+      "Bring more jobs! Nah the money wey we dey find – Canice",
+      "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+      "Hardships often prepare ordinary people for an extraordinary destiny. - C.S. Lewis",
+      "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+      "The journey of a thousand miles begins with one step. - Lao Tzu",
+      "It is during our darkest moments that we must focus to see the light. - Aristotle",
+      "We may encounter many defeats but we must not be defeated. - Maya Angelou",
+      "The purpose of our lives is to be happy. - Dalai Lama",
+      "Success is to be measured not so much by the position that one has reached in life as by the obstacles which he has overcome. - Booker T. Washington",
+      "Do not go where the path may lead, go instead where there is no path and leave a trail. - Ralph Waldo Emerson",
+      "I attribute my success to this: I never gave or took any excuse. - Florence Nightingale",
+      "The only impossible journey is the one you never begin. - Tony Robbins",
+      "The only person you are destined to become is the person you decide to be. - Ralph Waldo Emerson",
+      "The best way to predict the future is to invent it. - Alan Kay",
+      "It does not matter how slowly you go as long as you do not stop. - Confucius",
+      "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. - Albert Schweitzer"
+    ];
+  const fortuneCookie = Math.floor(Math.random() * quotes.length);
+  message.innerText = quotes[fortuneCookie];// Here's hoping someone gets the joke
 }
 
 updateMessage();
-setInterval(updateMessage, 5000);
+setInterval(updateMessage, 7000);
 
 // Do pardon the mess in the css. I'm not very good at it 
