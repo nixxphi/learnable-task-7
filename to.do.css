@@ -1,0 +1,157 @@
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('blackSand.jpg');
+    background-size: cover;
+    background-position: center;
+    color: black;
+  }
+
+  .container {
+    width: 375px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #383838;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .screen {
+    width: 335px;
+    height: 600px;
+    background-color: #ffffff80;
+    border-radius: 20px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .task {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .task input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  .task button {
+    background-color: #FF4136;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  }
+
+  .task button:hover {
+    background-color: #d40b0b;
+  }
+
+  .task input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  .task input[type="time"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  .list {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .floating-menu {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
+
+  .task:hover .floating-menu {
+    display: block;
+  }
+
+
+  .decorative-border {
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .decorative-icon {
+    font-size: 24px;
+    color: white;
+    margin-right: 10px;
+  }
+  .digital {
+    font-family: Arial, sans-serif;
+    font-size: 1.0em; 
+    color: white;
+    background-color: black;
+    padding: 2.5px 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 10; 
+  }
+  #slideUpVideo {
+    position: fixed;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 200px;
+    transition: bottom 0.5s ease-in-out;
+    z-index: 9999;
+  }
+  
+  #slideUpVideo.dismissed {
+    bottom: -300px;
+  }
+  
+  #slideUpVideo.show {
+    bottom: 0;
+  }
+  .due-box {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    margin-left: 8px;
+    border-radius: 4px;
+  }
+  #message {
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
